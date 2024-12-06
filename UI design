@@ -1,0 +1,101 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class PatientRegistration {
+    public static void main(String[] args) {
+        // Create frame
+        JFrame frame = new JFrame("Patient Registration System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLayout(new BorderLayout());
+
+        // Create registration panel
+        JPanel registrationPanel = new JPanel();
+        registrationPanel.setLayout(new GridLayout(7, 2, 10, 10));
+        registrationPanel.setBorder(BorderFactory.createTitledBorder("Patient Registration"));
+
+        // Add fields to registration panel
+        JLabel nameLabel = new JLabel("Name:");
+        JTextField nameField = new JTextField();
+
+        JLabel ageLabel = new JLabel("Age:");
+        JTextField ageField = new JTextField();
+
+        JLabel addressLabel = new JLabel("Address:");
+        JTextField addressField = new JTextField();
+
+        JLabel emailLabel = new JLabel("Email:");
+        JTextField emailField = new JTextField();
+
+        JLabel bloodGroupLabel = new JLabel("Blood Group:");
+        JComboBox<String> bloodGroupCombo = new JComboBox<>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
+
+        JLabel phoneLabel = new JLabel("Phone Number:");
+        JTextField phoneField = new JTextField();
+
+        JButton registerButton = new JButton("Register");
+
+        registrationPanel.add(nameLabel);
+        registrationPanel.add(nameField);
+        registrationPanel.add(ageLabel);
+        registrationPanel.add(ageField);
+        registrationPanel.add(addressLabel);
+        registrationPanel.add(addressField);
+        registrationPanel.add(emailLabel);
+        registrationPanel.add(emailField);
+        registrationPanel.add(bloodGroupLabel);
+        registrationPanel.add(bloodGroupCombo);
+        registrationPanel.add(phoneLabel);
+        registrationPanel.add(phoneField);
+        registrationPanel.add(new JLabel());
+        registrationPanel.add(registerButton);
+
+        // Create actions panel
+        JPanel actionsPanel = new JPanel();
+        actionsPanel.setLayout(new FlowLayout());
+        actionsPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
+
+        JButton searchButton = new JButton("Search");
+        JButton updateButton = new JButton("Update");
+        JButton deleteButton = new JButton("Delete");
+
+        actionsPanel.add(searchButton);
+        actionsPanel.add(updateButton);
+        actionsPanel.add(deleteButton);
+
+        // Add panels to frame
+        frame.add(registrationPanel, BorderLayout.CENTER);
+        frame.add(actionsPanel, BorderLayout.SOUTH);
+
+        // Register button action listener
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nameField.getText();
+                String age = ageField.getText();
+                String address = addressField.getText();
+                String email = emailField.getText();
+                String bloodGroup = (String) bloodGroupCombo.getSelectedItem();
+                String phone = phoneField.getText();
+
+                JOptionPane.showMessageDialog(frame, "Patient Registered:\n" +
+                        "Name: " + name + "\n" +
+                        "Age: " + age + "\n" +
+                        "Address: " + address + "\n" +
+                        "Email: " + email + "\n" +
+                        "Blood Group: " + bloodGroup + "\n" +
+                        "Phone: " + phone);
+            }
+        });
+
+        // Other button listeners (placeholder)
+        searchButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Search feature coming soon!"));
+        updateButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Update feature coming soon!"));
+        deleteButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Delete feature coming soon!"));
+
+        // Show frame
+        frame.setVisible(true);
+    }
+}
